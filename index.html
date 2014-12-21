@@ -140,6 +140,16 @@
             cyrillicTextareaElem.value = div.innerText;
 
         }
+
+        function select(textareaName) {
+            var textareaElem = document.converter_form[textareaName];
+            textareaElem.select();
+        }
+        function clear1(textareaName) {
+            var textareaElems = document.getElementsByTagName('textarea');
+            for (var n = textareaElems.length, i = 0; i < n; i++)
+                textareaElems[i].value = "";
+        }
     </script>
 </head>
 <body>
@@ -148,25 +158,52 @@
 
     <h1 class="sr-only">Lotinchadan, lotinchani Krillchaga o'girish</h1>
 
-    <div class="row">
-        <p class="col-md-6">
-            <textarea
-                    autofocus=""
-                    class="form-control"
-                    placeholder="Latin text here"
-                    rows="10"
-                    oninput="onLatinTextChange(this.value)"></textarea>
-        </p>
+    <h2 class="sr-only">O'zbekcha lotin textlarni, matnlarni krilchaga o'tirish,
+        o'girish</h2>
 
-        <p class="col-md-6">
-            <textarea
-                    readonly
-                    class="form-control"
-                    rows="10"
-                    id="cyrillic_textarea">
-            </textarea>
-        </p>
-    </div>
+    <br>
+    <form name="converter_form" onsubmit="return false;">
+        <div class="row">
+            <div class="col-md-6">
+
+                <p class="text-center">
+                    <button
+                            onclick="select('latin_textarea')"
+                            class="btn btn-primary">Select All
+                    </button>
+                    <button
+                            onclick="clear1()"
+                            class="btn btn-danger">Clear</button>
+                </p>
+                <textarea
+                        id="latin_textarea"
+                        autofocus=""
+                        class="form-control"
+                        placeholder="Latin text here"
+                        rows="10"
+                        oninput="onLatinTextChange(this.value)"></textarea>
+            </div>
+            <p class="clearfix visible-xs"></p>
+
+            <div class="col-md-6">
+
+                <p class="text-center">
+                    <button
+                            onclick="select('cyrillic_textarea')"
+                            class="btn btn-primary">Select All</button>
+                    <button
+                            onclick="clear1()"
+                            class="btn btn-danger">Clear</button>
+                </p>
+                <textarea
+                        readonly
+                        class="form-control"
+                        rows="10"
+                        id="cyrillic_textarea">
+                </textarea>
+            </div>
+        </div>
+    </form>
 </div>
 
 </body>
